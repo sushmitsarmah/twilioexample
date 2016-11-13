@@ -36,17 +36,7 @@ module.exports = {
         test: /\.styl$/,
         include: helpers.root('src', 'app'),
         loader: 'raw!stylus'
-      }     
-      // {
-      //   test: /\.less$/,
-      //   exclude: helpers.root('src', 'app'),
-      //   loader: ExtractTextPlugin.extract('style', 'css?sourceMap!less?sourceMap') // these css styles will be in a seperate file
-      // },
-      // {
-      //   test: /\.less$/,
-      //   include: helpers.root('src', 'app'),
-      //   loader: 'style!css!less?strictMath&noIeCompat' // these css styles will be included
-      // }
+      }
     ]
   },
 
