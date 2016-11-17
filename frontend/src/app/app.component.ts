@@ -1,10 +1,9 @@
 import { Component } from '@angular/core';
+import { OnInit } from '@angular/core';
 import '../../public/css/styles.styl';
+import { Hero } from './hero';
+import { HeroService } from './hero.service';
 
-export class Hero {
-  id: number;
-  name: string;
-}
 
 const HEROES: Hero[] = [
   { id: 11, name: 'Mr. Nice' },
@@ -22,15 +21,27 @@ const HEROES: Hero[] = [
 @Component({
   selector: 'my-app',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.styl']
+  styleUrls: ['./app.component.styl'],
+  providers: [HeroService]
 })
 
-export class AppComponent { 
+export class AppComponent implements OnInit { 
 	imgsrc = '../../public/images/angular.png';
 	heroes = HEROES;
-  	selectedHero: Hero;
+  selectedHero: Hero;
 
-  	onSelect(hero: Hero): void {
+  constructor(private heroService: HeroService) { }
+
+  getHeroes(): void {
+    this.heroService.getHeroes().then((heroes) => this.heroes = heroes);
+    // this.heroes = this.heroService.getHeroes();
+  }  
+
+  ngOnInit(): void {
+    this.getHeroes();
+  }  
+
+  onSelect(hero: Hero): void {
 	    this.selectedHero = hero;
 	}
 }
